@@ -3,6 +3,7 @@ MAINTAINER snowyday
 
 # User
 ENV USER user
+ENV PASS user
 
 # Libs
 RUN apt update
@@ -15,7 +16,7 @@ RUN git clone https://github.com/tmux/tmux.git /tmp/tmux
 RUN cd /tmp/tmux && ./autogen.sh && ./configure && make && make install
 RUN rm -fr /tmp/tmux
 
-# # Lc_ALL: cannot change locale (ja_JP.UTF-8)
+# Lc_ALL: cannot change locale (ja_JP.UTF-8)
 RUN locale-gen ja_JP.UTF-8
 
 # could not load host key: /etc/ssh/ssh_host_rsa_key
@@ -25,7 +26,7 @@ RUN /etc/init.d/ssh restart
 # User
 RUN adduser $USER
 RUN gpasswd -a $USER sudo
-RUN echo "$USER:$USER" | chpasswd
+RUN echo "$USER:$PASS" | chpasswd
 
 # Set user
 USER $USER
