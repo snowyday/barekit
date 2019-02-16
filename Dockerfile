@@ -6,15 +6,10 @@ ENV USER user
 ENV PASS user
 
 # Libs
-RUN apt update
-RUN apt -y install sudo language-pack-ja openssh-server zsh \
-           vim git curl wget emacs htop automake build-essential \
-	   pkg-config libevent-dev libncurses5-dev
-
-# TMUX
-RUN git clone https://github.com/tmux/tmux.git /tmp/tmux
-RUN cd /tmp/tmux && ./autogen.sh && ./configure && make && make install
-RUN rm -fr /tmp/tmux
+RUN apt-get update
+RUN apt-get -y install sudo language-pack-ja openssh-server zsh \
+            vim git curl wget emacs htop automake build-essential \
+	    pkg-config libevent-dev libncurses5-dev tmux
 
 # Lc_ALL: cannot change locale (ja_JP.UTF-8)
 RUN locale-gen ja_JP.UTF-8
