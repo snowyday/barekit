@@ -39,3 +39,6 @@ RUN ln -s ~/.zprezto/runcoms/zshrc ~/.zshrc
 # Set root for sshd and shell
 USER root
 RUN chsh -s /bin/zsh $USER
+
+# SSH start
+CMD ["/usr/sbin/sshd", "-D"]
