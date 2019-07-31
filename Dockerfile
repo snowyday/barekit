@@ -9,8 +9,14 @@ ENV PASS user
 RUN apt-get update
 RUN apt-get -y install sudo language-pack-ja openssh-server zsh \
             vim git curl wget emacs htop automake build-essential \
-	    pkg-config libevent-dev libncurses5-dev tmux lsof
-    
+	    pkg-config libevent-dev libncurses5-dev tmux lsof \
+	    texlive-latex-extra dvipng \
+	    software-properties-common
+	    
+RUN add-apt-repository -y ppa:chris-lea/redis-server
+RUN apt-get update
+RUN apt-get -y install redis-server
+
 # Lc_ALL: cannot change locale (ja_JP.UTF-8)
 RUN locale-gen ja_JP.UTF-8
 
