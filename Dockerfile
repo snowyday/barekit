@@ -4,6 +4,7 @@ MAINTAINER snowyday
 # User
 ENV USER user
 ENV PASS user
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Libs
 RUN apt-get update
